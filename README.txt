@@ -8,6 +8,6 @@ This repository is just for fun, and does not contain any serious body of work.
 Feel free to comment on the code, and contribute ideas.
 
 // Projects //
-Projects will be listed here.  They will have their own readme's with information about them.
+Projects will be listed here.
 
-*No projects currently*
+*Bin Library*
