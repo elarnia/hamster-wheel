@@ -91,10 +91,17 @@ bool bin_library::search(char& word)
 //Print all the records in the library
 void bin_library::print_library()
 {
+	bin *tmp = top;
+	
+	//Print a header
 	cout << "~~~~~~~~~~~~~~~~~~Library~~~~~~~~~~~~~~~~~\n";
+	
+	//Print each bin
 	for(int i = bins; i>0; i--)
 	{
-		this.print();
+		tmp.print();
 		cout << "***\t\t***\t\t***\t\t***\n";
+		tmp = tmp->next
 	}
+	
 };
