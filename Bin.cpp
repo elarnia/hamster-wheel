@@ -13,50 +13,52 @@ Destructors are also included.
 #include <iostream>
 using namespace std;
 
-bin::bin(int indx)
+bin::bin(char indx)
 {
 	index = indx;
 	num_entries = 0;
 	next = NULL;  
-	first = NULL; 
+	head = NULL; 
 };
 
 bin::~bin()
 {
-	record *tmp = first;  //temp pointer to traverse the records
+	record *tmp = head;  //temp pointer to traverse the records
 
 	if (num_entries == 0  && next == NULL)
 	{
 		delete next;
-		delete first;
+		delete head;
 	}
 	else
 	{
 		//delete all the records in the bin
-		while (num_entries > 0)
+		while (num_entries > 1)
 		{
-			while (tmp->next != NULL)
-				tmp = next;
+			while (tmp->next->next != NULL)
+				tmp = tmp->next;
 
-			delete tmp;
-			tmp = first;
+			delete tmp->next;
+			tmp->next = NULL;
+			tmp = head;
 			num_entries--;
 		}
+		delete head;
 		delete next;
 	}
 };
 
 void bin::add_entry(char& word)
 {
-	record *tmp = first;
-	record *entry = new record(char &word);
+	record *tmp = head;
+	record *entry = new record(char& word);
 
-	if (first == NULL)
-		first = entry;
+	if (head == NULL)
+		head = entry;
 	else
 	{
 		//find the right place in the linked list to insert the new record
-		while (tmp->next.size < entry.size)
+		while (tmp->next.size < entry.size && tmp->next != NULL)
 			tmp = tmp->next;
 
 		entry->next = tmp->next;
@@ -67,20 +69,24 @@ void bin::add_entry(char& word)
 void bin::remove_entry(char& word)
 {
 	bool match = false;
-	record *tmp, *prev = first;
+	record *tmp, *prev = head;
 	record *entry = new record(char& word);
 
-	if (first == NULL)
-		delete entry;
+	//Check for an empty bin
+	if (head == NULL)
+		match = false;
 	else
 	{
+		//Find the first record of at least the same size
 		while (tmp->next.size < entry.size)
 		{
 			prev = tmp;
 			tmp = tmp->next;
 		}
 
-		do{
+		//Check records of the same size for a match
+		while (match == false && tmp.size == entry.size)
+		{
 			for (int i = 0; i < entry.size; i++)
 			{
 				if (entry[i] != tmp[i])
@@ -89,37 +95,42 @@ void bin::remove_entry(char& word)
 					match = true;
 			}
 
-			if (match == false && tmp->next.size == entry.size)
+			if (match == false)
 			{
 				prev = tmp;
 				tmp = tmp->next;
 			}
 			else if (match == true)
 			{
-				prev->next = tmp->next;
+				prev->next = tmp->next;  //Make sure the list stays linked correctly
 				delete tmp;
 			}
-		} while (match == false && tmp.size == entry.size);
+		}
 	}
+	
+	delete entry;
 };
 
+//Search the bin to see if a record is in it
 bool bin::search(char& word)
 {
 	bool match = false;
-	record *tmp, *prev = first;
+	record *tmp = head;
 	record *entry = new record(char& word);
-
-	if (first == NULL)
-		delete entry;
+	
+	//Check if the bin has any records to check
+	if (head == NULL)
+		match = false;
 	else
 	{
-		while (tmp->next.size < entry.size)
-		{
-			prev = tmp;
+		//Find the first record of at least the same size
+		while (tmp->next.size < entry.size  && tmp->next != NULL)
 			tmp = tmp->next;
-		}
-
-		do{
+		
+		//Check for a matching record
+		while (match == false && tmp.size == entry.size)
+		{
+			//Compare the records character by character
 			for (int i = 0; i < entry.size; i++)
 			{
 				if (entry[i] != tmp[i])
@@ -128,13 +139,13 @@ bool bin::search(char& word)
 					match = true;
 			}
 
-			if (match == false && tmp->next.size == entry.size)
+			//Go to next record if no match yet
+			if (match == false)
 			{
-				prev = tmp;
 				tmp = tmp->next;
 			}
 		
-		} while (match == false && tmp.size == entry.size);
+		}
 	}
 	
 	delete entry;
@@ -144,7 +155,7 @@ bool bin::search(char& word)
 
 void bin::print()
 {
-	record *tmp = first;
+	record *tmp = head;
 
 	while (tmp != NULL)
 	{
