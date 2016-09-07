@@ -3,7 +3,8 @@
 /*******************************************************************************
 Define a class for a library of bins.  Provides access to the member functions
 in Library_Bins.cpp. The bins are a linked list, and share a common attribute
-to identify the contents (e.g. words, numbers, etc.). 
+to identify the contents (e.g. words, numbers, etc.). Each bin contains a
+linked list of entries which share the same index for that bin.
 *******************************************************************************/
 #ifndef LIBRARY_BINS_H
 #define LIBRARY_BINS_H
