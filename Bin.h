@@ -14,14 +14,14 @@ lists.
 #include record.h
 
 class bin {
-	int index;  // The indentifier for the bin
+	char index;  // The indentifier for the bin
 	int num_entries;  // How many records in this bin
 	bin *next;  //points to the next bin.
-	record *first;
+	record *head;
 
 public:
 	//Contructor and destructor for the bin
-	bin(int indx);
+	bin(char indx);
 	~bin();
 
 	void add_entry(char& word);
