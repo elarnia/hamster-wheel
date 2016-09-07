@@ -13,13 +13,15 @@ linked list of entries which share the same index for that bin.
 class bin_library{
 	int bins;    //number of bins in the library
 	bin *lBin;
-	void add_bin();
-	void remove_bin();
+	void add_bin(char index);
+	void remove_bin(bin *target);
 public:
 	//constructor and destructor
 	bin_library();
 	~bin_library();
 	
 	bool search(char& data);
+	void print_bin(char index);
+	void print_library();
 }
 #endif
