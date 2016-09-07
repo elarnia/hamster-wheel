@@ -12,7 +12,7 @@ linked list of entries which share the same index for that bin.
 
 class bin_library{
 	int bins;    //number of bins in the library
-	bin *lBin;
+	bin *top;
 	void add_bin(char index);
 	void remove_bin(bin *target);
 public:
@@ -21,7 +21,6 @@ public:
 	~bin_library();
 	
 	bool search(char& data);
-	void print_bin(char index);
 	void print_library();
 }
 #endif
