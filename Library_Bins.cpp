@@ -11,13 +11,13 @@ sorted in the bin by length.
 bin_library::bin_library()
 {
 	bins = 0;
-	lBin = NULL;
+	top = NULL;
 };
 
 //Destructor
 bin_library::~bin_library()
 {
-	bin *temp=lBin;
+	bin *temp = top;
 	
 	while(bins>1)
 	{
@@ -28,25 +28,26 @@ bin_library::~bin_library()
 		remove_bin(temp->next);  //Delete the last bin in the list
 		temp->next= NULL;  //Set the new tail of the list
 		bins--;
-		temp = lBin;
+		temp = top;
 	}
-	delete lBin;
+	
+	delete top;
 };
 
 //Create a new bin in the Library
 void bin_library::add_bin(char index)
 {
-	bin *temp = lBin;
+	bin *temp = top;
 	
 	if (bins == 0)
-		lBin = new bin;
+		top = new bin(index);
 	else
 	{	//Find the tail of the list
 		while(temp->next != NULL)
 			temp = temp->next;
 	}
 	
-	temp->next = new bin(char index);  //Add the new bin to the end of the list
+	temp->next = new bin(index);  //Add the new bin to the end of the list
 	temp->next->next = NULL;  //Set the new tail of the list
 	bins++;
 };
@@ -55,4 +56,6 @@ void bin_library::add_bin(char index)
 void bin_library::remove_bin(bin *target)
 {
 	delete target;
-}
+};
+
+
