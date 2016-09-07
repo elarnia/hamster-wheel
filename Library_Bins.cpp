@@ -6,6 +6,8 @@ The index is an attribute of the entries stored in the library.  Entries will be
 sorted in the bin by length.
 *******************************************************************************/
 #include bin.h
+#include <iostream>
+using namespace std;
 
 //Constructor
 bin_library::bin_library()
