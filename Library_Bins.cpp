@@ -88,7 +88,13 @@ bool bin_library::search(char& word)
 	return match;
 };
 
-void bin_library::print()
+//Print all the records in the library
+void bin_library::print_library()
 {
-	;
+	cout << "~~~~~~~~~~~~~~~~~~Library~~~~~~~~~~~~~~~~~\n";
+	for(int i = bins; i>0; i--)
+	{
+		this.print();
+		cout << "***\t\t***\t\t***\t\t***\n";
+	}
 };
