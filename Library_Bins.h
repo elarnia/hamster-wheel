@@ -11,12 +11,14 @@ to identify the contents (e.g. words, numbers, etc.).
 
 class bin_library{
 	int bins;    //number of bins in the library
+	bin *lBin;
 	void add_bin();
 	void remove_bin();
 public:
 	//constructor and destructor
 	bin_library();
 	~bin_library();
-
+	
+	bool search(char& data);
 }
 #endif
