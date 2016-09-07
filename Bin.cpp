@@ -134,7 +134,7 @@ bool bin::search(char& word)
 			for (int i = 0; i < entry.size; i++)
 			{
 				if (entry[i] != tmp[i])
-					break;
+					i = entry.size;
 				else if (i == (entry.size - 1) && entry[i] == tmp[i])
 					match = true;
 			}
