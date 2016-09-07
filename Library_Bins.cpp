@@ -58,4 +58,29 @@ void bin_library::remove_bin(bin *target)
 	delete target;
 };
 
-
+bool bin_library::search(char& word)
+{
+	bool match = false;
+	bin *tmp= top;
+	
+	//Check if the bin has any records
+	if (tmp == 0)
+		match = false;
+	else
+	{
+		//Find the bin with a matching index
+		while(tmp != NULL && match == false)
+		{
+			//Check the index for lower and upper case
+			if (tmp.index == word[0] || (tmp.index + 32) == word[0])
+				match == true;
+			else
+				tmp = tmp->next;
+		}
+		
+		//If a bin with a matching index was found, search it for the record
+		if(match == true)
+			match = tmp.search(word);
+	}
+	return match;
+};
