@@ -82,5 +82,11 @@ bool bin_library::search(char& word)
 		if(match == true)
 			match = tmp.search(word);
 	}
+	
 	return match;
+};
+
+void bin_library::print()
+{
+	;
 };
