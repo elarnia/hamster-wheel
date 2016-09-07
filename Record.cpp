@@ -8,6 +8,7 @@ could be stored. Also includes
 ********************************/
 #include record.h
 
+//Constructor
 record::record(char& data)
 {
 	word = &data;
@@ -22,6 +23,7 @@ record::record(char& data)
 	bind_word();
 };
 
+//Destructor
 record::~record()
 {
 	delete word;
@@ -53,16 +55,19 @@ void record::bind_word()
 	bind = first * (second + third);
 };
 
+//Return the size of the record
 int record::getSize()
 {
 	return size;
 };
 
+//Return the bind of the record
 int record::getBind()
 {
 	return bind;
 };
 
+//Return the record
 const char& record::getWord()
 {
 	return word;
