@@ -6,7 +6,7 @@ Creates a linked list of linked lists, and
 manipulates the data in them.
 Author: Samuel Patrick 9/7/16
 ********************************************/
-#include library_bins.h
+#include "library_bins.h"
 #include <iostream>
 using namespace std;
 
@@ -14,7 +14,7 @@ void main()
 {
 	//a variable for user input
 	char user[5] = { '\0' };
-	int menu = 0;;
+	int menu = 0;
 	//words to add to the libary
 	char t1[] = "cow";
 	char t2[] = "who";
@@ -40,7 +40,7 @@ void main()
 	char t22[] = "pineapple";
 
 	//create the library
-	bin_library *me = new bin_library();
+	bin_library *me = new bin_library;
 
 	//create the bins for the library
 	for (char y = 'a'; y <= 'z'; y++)
@@ -52,7 +52,7 @@ void main()
 	//create menu for user input
 	while (menu != 7)
 	{
-		cout << "Welcome to the Library";
+		cout << "\fWelcome to the Library\n";
 		cout << "select one of the following options\n";
 		cout << "1. Search for Entry\n";
 		cout << "2. Delete Entry\n";
@@ -67,7 +67,7 @@ void main()
 
 		if (menu == 1)
 		{
-			cout << "Please enter the word to search for:  \n";
+			cout << "Please enter the word to search for:\n";
 
 			//Get user input
 			for (int i = 0; i < 4; i++)
@@ -89,7 +89,7 @@ void main()
 		}
 		else if (menu == 3)
 		{
-			cout << "Please enter the index you would like records for:  \n";
+			cout << "Please enter the index you would like records for:\n";
 
 			//Get user input for single index
 			cin.get(user[0]);
@@ -114,7 +114,7 @@ void main()
 
 			delete me;
 
-			cout << "I guess this is the end.  Maybe I'll become a poet writer next.\n"
+			cout << "I guess this is the end.  Maybe I'll become a poet writer next.\n";
 		}
 		else if (menu == 7)
 		{
