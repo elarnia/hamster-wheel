@@ -10,15 +10,15 @@ Author: Samuel Patrick 9/7/16
 #include "record.h"
 
 //Constructor
-record::record(char& data)
+record::record(char& word)
 {
-	word = *data;
-	size = 0;
-	next = 0;
+	_word = *word;
+	_size = 0;
+	_next = 0;
 
-	for (int i = 0; word[i] != '\0'; i++)
+	for (int i = 0; _word[i] != '\0'; i++)
 	{
-		size++;
+		_size++;
 	}
 
 	bind_word();
@@ -27,8 +27,8 @@ record::record(char& data)
 //Destructor
 record::~record()
 {
-	delete word;
-	delete next;
+	delete _word;
+	delete _next;
 };
 
 
@@ -38,18 +38,18 @@ void record::bind_word()
 	int first, second, third;
 
 	//Get values from the data, and check they are valid
-	if (word[0] != '\0' && size > 0)
-		first = word[0];
+	if (_word[0] != '\0' && size > 0)
+		first = _word[0];
 	else
 		first = 0;
 	
-	if (word[1] != '\0' && size > 1)
-		second = word[0];
+	if (_word[1] != '\0' && size > 1)
+		second = _word[0];
 	else
 		second = 0;
 	
-	if (word[2] != '\0' && size > 2)
-		third = word[0];
+	if (_word[2] != '\0' && size > 2)
+		third = _word[0];
 	else
 		third = 0;
 	
@@ -59,23 +59,23 @@ void record::bind_word()
 //Return the size of the record
 int record::get_Size()
 {
-	return size;
+	return _size;
 };
 
 //Return the bind of the record
 int record::get_Bind()
 {
-	return bind;
+	return _bind;
 };
 
 //Copies the contents of word into ptr
-void record::get_record(char *ptr)
+void record::get_record(char &word)
 {
-	*ptr = *word;
+	*word = *_word;
 };
 
 //Sets ptr to next 
 void record::get_next(record *ptr)
 {
-	ptr = next;
+	ptr = _next;
 };
