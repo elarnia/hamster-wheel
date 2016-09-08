@@ -14,24 +14,27 @@ using namespace std;
 bin_library::bin_library()
 {
 	bins = 0;
-	top = NULL;
+	top = 0;
 };
 
 //Destructor
 bin_library::~bin_library()
 {
-	bin *temp = top;
+	bin *temp, *prev = top;
 	
 	while(bins>1)
 	{
 		//Find the last bin in the list
-		while(temp->next->next != null)
-			temp = temp->next;
+		while(temp->next != 0)
+		{
+			prev = temp;
+			temp.get_next(temp);
+		}
 		
-		remove_bin(temp->next);  //Delete the last bin in the list
-		temp->next= NULL;  //Set the new tail of the list
+		remove_bin(temp);  //Delete the last bin in the list
+		prev->next = 0;  //Set the new tail of the list
 		bins--;
-		temp = top;
+		prev = temp = top;
 	}
 	
 	delete top;
@@ -43,15 +46,14 @@ void bin_library::add_bin(char index)
 	bin *temp = top;
 	
 	if (bins == 0)
-		top = new bin(index);
+		temp = top;
 	else
 	{	//Find the tail of the list
-		while(temp->next != NULL)
-			temp = temp->next;
+		while(temp != 0)
+			temp.get_next(temp);
 	}
 	
-	temp->next = new bin(index);  //Add the new bin to the end of the list
-	temp->next->next = NULL;  //Set the new tail of the list
+	temp = new bin(index);  //Add the new bin to the end of the list
 	bins++;
 };
 
@@ -64,7 +66,7 @@ void bin_library::remove_bin(bin *target)
 bool bin_library::search(char& word)
 {
 	bool match = false;
-	bin *tmp= top;
+	bin *tmp = top;
 	
 	//Check if the bin has any records
 	if (tmp == 0)
@@ -72,13 +74,13 @@ bool bin_library::search(char& word)
 	else
 	{
 		//Find the bin with a matching index
-		while(tmp != NULL && match == false)
+		while(tmp != 0 && match == false)
 		{
 			//Check the index for lower and upper case
 			if (tmp.index == word[0] || (tmp.index + 32) == word[0])
 				match == true;
 			else
-				tmp = tmp->next;
+				tmp.get_next(tmp);
 		}
 		
 		//If a bin with a matching index was found, search it for the record
@@ -91,19 +93,19 @@ bool bin_library::search(char& word)
 
 void bin_library::add_entry(char& word)
 {
-	bin* temp = top;
+	bin *temp = top;
 	char index = word[0];
 
 	//finding a matching bin for the word
-	while (temp != NULL)
+	while (temp != 0)
 	{
 		if (temp.index == index)
 		{
 			temp.add_entry(word);
-			temp = NULL;
+			temp = 0;
 		}
 		else
-			temp = temp->next;
+			temp.get_next(temp);
 	}
 
 };
@@ -121,7 +123,7 @@ void bin_library::print_library()
 	{
 		tmp.print();
 		cout << "***\t\t***\t\t***\t\t***\n";
-		tmp = tmp->next;
+		tmp.get_next(tmp);
 	}
 	
 };
