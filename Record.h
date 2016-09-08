@@ -12,21 +12,21 @@ Author: Samuel Patrick 9/7/16
 #define RECORD_H_INCLUDED
 
 class record{
-	int size;
-	int bind; //Value computed from letters in the word
-	char *word;
-	record *next;  // points to the next record
+	int _size;
+	int _bind; //Value computed from letters in the word
+	char *_word;
+	record *_next;  // points to the next record
 	void bind_word();
 public:
 	//Constructors & Destructor
-	record(char& data);
+	record(char& word);
 	~record();
 
 	//Access functions
 	int get_Size(); //Returns size
 	int get_Bind(); //Returns bind
-	void get_Record(char *ptr); //Copies the contents of word into ptr
-	void get_next(record *ptr); //Allows access to record->next
+	void get_Record(char &word); //Copies the contents of _word into word
+	void get_next(record *next); //Allows access to record->next
 };
 
 #endif
