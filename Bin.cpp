@@ -9,8 +9,8 @@ entries are included. Constructors and
 Destructors are also included.
 Author: Samuel Patrick 9/7/16
 *********************************************/
-#include record.h
-#include bin.h
+#include "record.h"
+#include "bin.h"
 #include <iostream>
 using namespace std;
 
@@ -52,7 +52,7 @@ bin::~bin()
 void bin::add_entry(char& word)
 {
 	record *tmp = head;
-	record *entry = new record(char& word);
+	record *entry = new record(&word);
 
 	if (head == NULL)
 		head = entry;
@@ -71,7 +71,7 @@ void bin::remove_entry(char& word)
 {
 	bool match = false;
 	record *tmp, *prev = head;
-	record *entry = new record(char& word);
+	record *entry = new record(&word);
 
 	//Check for an empty bin
 	if (head == NULL)
@@ -90,9 +90,9 @@ void bin::remove_entry(char& word)
 		{
 			for (int i = 0; i < entry.size; i++)
 			{
-				if (entry[i] != tmp[i])
+				if (*entry[i] != *tmp[i])
 					break;
-				else if (i == (entry.size - 1) && entry[i] == tmp[i])
+				else if (i == (entry.size - 1) && *entry[i] == *tmp[i])
 					match = true;
 			}
 
@@ -117,7 +117,7 @@ bool bin::search(char& word)
 {
 	bool match = false;
 	record *tmp = head;
-	record *entry = new record(char& word);
+	record *entry = new record(&word);
 	
 	//Check if the bin has any records to check
 	if (head == NULL)
@@ -134,9 +134,9 @@ bool bin::search(char& word)
 			//Compare the records character by character
 			for (int i = 0; i < entry.size; i++)
 			{
-				if (entry[i] != tmp[i])
+				if (*entry[i] != *tmp[i])
 					i = entry.size;
-				else if (i == (entry.size - 1) && entry[i] == tmp[i])
+				else if (i == (entry.size - 1) && *entry[i] == *tmp[i])
 					match = true;
 			}
 
