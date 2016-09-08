@@ -12,9 +12,9 @@ Author: Samuel Patrick 9/7/16
 //Constructor
 record::record(char& data)
 {
-	word = &data;
+	word = *data;
 	size = 0;
-	next = NULL;
+	next = 0;
 
 	for (int i = 0; word[i] != '\0'; i++)
 	{
@@ -69,7 +69,7 @@ int record::get_Bind()
 };
 
 //Copies the contents of word into ptr
-void record::get_Word(char *ptr)
+void record::get_record(char *ptr)
 {
 	*ptr = *word;
 };
