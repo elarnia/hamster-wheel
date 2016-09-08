@@ -15,14 +15,14 @@ Author: Samuel Patrick 9/7/16
 #include "record.h"
 
 class bin {
-	char index;  // The indentifier for the bin
-	int num_entries;  // How many records in this bin
-	bin *next;  //points to the next bin.
-	record *head;
+	char _index;  // The indentifier for the bin
+	int _num_entries;  // How many records in this bin
+	bin *_next;  //points to the next bin.
+	record *_head;
 
 public:
 	//Contructor and destructor for the bin
-	bin(char indx);
+	bin(char index);
 	~bin();
 
 	void add_entry(char& word); //Allows access to Record.h record()
@@ -31,7 +31,7 @@ public:
 	void print();  //show all the records in the bin
 	char get_index(); //Returns index
 	int get_size(); //Returns num_enries
-	void get_next(bin *ptr); //Allows access to bin->next
-	void get_entries(record *ptr);  //Allows access to bin->head 
+	void get_next(bin *next); //Allows access to bin->next
+	void get_entries(record *head);  //Allows access to bin->head 
 };
 #endif
