@@ -9,13 +9,12 @@ Author: Samuel Patrick 9/7/16
 *******************************************************************************/
 #ifndef LIBRARY_BINS_H
 #define LIBRARY_BINS_H
-#include bin.h
+#include "bin.h"
 
 class bin_library{
 	int bins;    //number of bins in the library
 	bin *top;
-	void add_bin(char index);
-	void remove_bin(bin *target);
+	
 public:
 	//constructor and destructor
 	bin_library();
@@ -24,5 +23,7 @@ public:
 	bool search(char& data);
 	void print_library();
 	void add_entry(char& word);
+	void add_bin(char index);
+	void remove_bin(bin *target);
 }
 #endif
