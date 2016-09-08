@@ -18,8 +18,7 @@ class bin {
 	char _index;  // The indentifier for the bin
 	int _num_entries;  // How many records in this bin
 	bin *_next;  //points to the next bin.
-	record *_head;
-
+	record *_head;  //points to the start of the record list
 public:
 	//Contructor and destructor for the bin
 	bin(char index);
