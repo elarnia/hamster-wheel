@@ -13,17 +13,20 @@ Author: Samuel Patrick 9/7/16
 
 class bin_library{
 	int bins;    //number of bins in the library
-	bin *top;
+	bin *top;  //head of the bin linked list
 	
 public:
-	//constructor and destructor
+	//constructor
 	bin_library();
+	//destructor
 	~bin_library();
 	
-	bool search(char& data);
-	void print_library();
-	void add_entry(char& word);
-	void add_bin(char index);
-	void remove_bin(bin *target);
+	bool search(char& data);  //Check if data is in the library
+	void print_library();  //Print the contents of the library
+	void add_entry(char& word);  //Add an entry to the library
+	void add_bin(char index); //Add a new bin with the index given
+	void remove_bin(bin *target); //Delete the target
+	int get_bins(); //Return the number of bins in the library
+	void list_bins();  //Print the index of all the bins
 }
 #endif
