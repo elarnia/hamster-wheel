@@ -6,7 +6,7 @@ The index is an attribute of the entries stored in the library.  Entries will be
 sorted in the bin by length.
 Author: Samuel Patrick 9/7/16
 *******************************************************************************/
-#include bin.h
+#include "bin.h"
 #include <iostream>
 using namespace std;
 
@@ -121,7 +121,24 @@ void bin_library::print_library()
 	{
 		tmp.print();
 		cout << "***\t\t***\t\t***\t\t***\n";
-		tmp = tmp->next
+		tmp = tmp->next;
 	}
 	
+};
+
+//Return the number of bins in the library
+int get_bins()
+{
+	return bins;
+};
+
+//Print the index of all the bins
+void list_bins()
+{
+	bin *tmp = top;
+	while(tmp != 0)
+	{
+		cout << tmp.get_index() << endl;
+		tmp.get_next(tmp);  //tmp = tmp->next
+	}
 };
