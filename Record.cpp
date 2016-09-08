@@ -7,7 +7,7 @@ written for words, but any data
 could be stored.
 Author: Samuel Patrick 9/7/16
 ********************************/
-#include record.h
+#include "record.h"
 
 //Constructor
 record::record(char& data)
@@ -57,19 +57,25 @@ void record::bind_word()
 };
 
 //Return the size of the record
-int record::getSize()
+int record::get_Size()
 {
 	return size;
 };
 
 //Return the bind of the record
-int record::getBind()
+int record::get_Bind()
 {
 	return bind;
 };
 
-//Return the record
-const char& record::getWord()
+//Copies the contents of word into ptr
+void record::get_Word(char *ptr)
 {
-	return word;
+	*ptr = *word;
+};
+
+//Sets ptr to next 
+void record::get_next(record *ptr)
+{
+	ptr = next;
 };
