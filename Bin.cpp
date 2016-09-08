@@ -14,96 +14,98 @@ Author: Samuel Patrick 9/7/16
 #include <iostream>
 using namespace std;
 
-bin::bin(char indx)
+bin::bin(char index)
 {
-	index = indx;
-	num_entries = 0;
-	next = NULL;  
-	head = NULL; 
+	_index = index;
+	_num_entries = 0;
+	_next = 0;  
+	_head = 0; 
 };
 
 bin::~bin()
 {
-	record *tmp = head;  //temp pointer to traverse the records
+	record *tmp = _head;  //temp pointer to traverse the records
 
-	if (num_entries == 0  && next == NULL)
+	if (_num_entries == 0  && _next == 0)
 	{
-		delete next;
-		delete head;
+		delete _next;
+		delete _head;
 	}
 	else
 	{
 		//delete all the records in the bin
-		while (num_entries > 1)
+		while (_num_entries > 1)
 		{
-			while (tmp->next->next != NULL)
-				tmp = tmp->next;
+			while ((tmp->_next)->_next != 0)
+				tmp = tmp->_next;
 
-			delete tmp->next;
-			tmp->next = NULL;
-			tmp = head;
-			num_entries--;
+			delete tmp->_next;
+			tmp->_next = 0;
+			tmp = _head;
+			_num_entries--;
 		}
-		delete head;
-		delete next;
+		delete _head;
+		delete _next;
 	}
 };
 
 void bin::add_entry(char& word)
 {
-	record *tmp = head;
+	record *tmp = _head;
 	record *entry = new record(&word);
+	int esize = entry->get_size();
 
-	if (head == NULL)
-		head = entry;
+	if (_head == 0)
+		_head = entry;
 	else
 	{
 		//find the right place in the linked list to insert the new record
-		while (tmp->next.size < entry.size && tmp->next != NULL)
+		while ((tmp->_next)->get_size() < esize && tmp->_next != 0)
 			tmp = tmp->next;
 
-		entry->next = tmp->next;
-		tmp->next = entry;
+		entry->_next = tmp->_next;
+		tmp->_next = entry;
 	}
 };
 
 void bin::remove_entry(char& word)
 {
 	bool match = false;
-	record *tmp, *prev = head;
+	record *tmp, *prev = _head;
 	record *entry = new record(&word);
+	int esize = entry->get_size(); //Reduce function calls
 
 	//Check for an empty bin
-	if (head == NULL)
+	if (head == 0)
 		match = false;
 	else
 	{
 		//Find the first record of at least the same size
-		while (tmp->next.size < entry.size)
+		while ((tmp->_next)->get_size() < esize)
 		{
 			prev = tmp;
-			tmp = tmp->next;
+			tmp = tmp->_next;
 		}
 
 		//Check records of the same size for a match
-		while (match == false && tmp.size == entry.size)
+		while (match == false && tmp->get_size() == esize)
 		{
-			for (int i = 0; i < entry.size; i++)
+			for (int i = 0; i < esize; i++)
 			{
 				if (*entry[i] != *tmp[i])
-					break;
-				else if (i == (entry.size - 1) && *entry[i] == *tmp[i])
+					i = esize;
+				else if (i == (esize - 1) && *entry[i] == *tmp[i])
 					match = true;
 			}
 
 			if (match == false)
 			{
 				prev = tmp;
-				tmp = tmp->next;
+				tmp = tmp->_next;
 			}
 			else if (match == true)
 			{
-				prev->next = tmp->next;  //Make sure the list stays linked correctly
+				prev->_next = tmp->_next;  //Make sure the list stays linked correctly
 				delete tmp;
 			}
 		}
@@ -116,34 +118,35 @@ void bin::remove_entry(char& word)
 bool bin::search(char& word)
 {
 	bool match = false;
-	record *tmp = head;
-	record *entry = new record(&word);
+	record *tmp = _head;
+	record *entry = new record(word);
+	int esize = entry->get_size();
 	
 	//Check if the bin has any records to check
-	if (head == NULL)
+	if (_head == 0)
 		match = false;
 	else
 	{
 		//Find the first record of at least the same size
-		while (tmp->next.size < entry.size  && tmp->next != NULL)
-			tmp = tmp->next;
+		while ((tmp->_next)->get_size() < esize  && tmp->_next != 0)
+			tmp->get_next(tmp);
 		
 		//Check for a matching record
-		while (match == false && tmp.size == entry.size)
+		while (match == false && tmp->get_size() == esize)
 		{
 			//Compare the records character by character
-			for (int i = 0; i < entry.size; i++)
+			for (int i = 0; i < esize; i++)
 			{
 				if (*entry[i] != *tmp[i])
-					i = entry.size;
-				else if (i == (entry.size - 1) && *entry[i] == *tmp[i])
+					i = esize;
+				else if (i == (esize - 1) && *entry[i] == *tmp[i])
 					match = true;
 			}
 
 			//Go to next record if no match yet
 			if (match == false)
 			{
-				tmp = tmp->next;
+				tmp->get_next(tmp);
 			}
 		
 		}
@@ -156,34 +159,35 @@ bool bin::search(char& word)
 
 void bin::print()
 {
-	record *tmp = head;
+	record *tmp = _head;
+	char *word = tmp->get_record(word);
 
-	while (tmp != NULL)
+	while (tmp != 0)
 	{
-		cout << tmp.word << "\t\t" << tmp.size << "\t\t" << tmp.bind << "\n";
-		tmp = tmp->next;
+		cout << word << "\t\t" << tmp->get_size() << "\t\t" << tmp->get_bind() << "\n";
+		tmp->get_next(tmp);
 	}
 };
 
 
 char bin::get_index()
 {
-	return index;
+	return _index;
 };
 
 int get_size()
 {
-	return num_entries;
+	return _num_entries;
 };
 
 //Points the user to next bin in the library
-void get_next(bin *ptr)
+void get_next(bin &next)
 {
-	ptr = next;
+	next = _next;
 };
 
 //Points the user to the head of the bins records
-void get_entries(record *ptr)
+void get_entries(record &ptr)
 {
-	ptr = head;
+	ptr = _head;
 };
