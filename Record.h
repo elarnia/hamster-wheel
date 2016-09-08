@@ -14,7 +14,7 @@ Author: Samuel Patrick 9/7/16
 class record{
 	int size;
 	int bind; //Value computed from letters in the word
-	char* word;
+	char *word;
 	record *next;  // points to the next record
 	void bind_word();
 public:
@@ -23,9 +23,10 @@ public:
 	~record();
 
 	//Access functions
-	int getSize();
-	int getBind();
-	const char& getRecord();
+	int get_Size(); //Returns size
+	int get_Bind(); //Returns bind
+	void get_Record(char *ptr); //Copies the contents of word into ptr
+	void get_next(record *ptr); //Allows access to record->next
 };
 
 #endif
