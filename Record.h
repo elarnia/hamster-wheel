@@ -26,7 +26,7 @@ public:
 	int get_Size(); //Returns size
 	int get_Bind(); //Returns bind
 	void get_Record(char &word); //Copies the contents of _word into word
-	void get_next(record *next); //Allows access to record->next
+	void get_next(record *next); //Allows access to record->_next
 };
 
 #endif
