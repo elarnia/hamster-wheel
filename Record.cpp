@@ -4,7 +4,8 @@
 Creates a record from data, and
 identifies it size.  Currently
 written for words, but any data
-could be stored. Also includes
+could be stored.
+Author: Samuel Patrick 9/7/16
 ********************************/
 #include record.h
 

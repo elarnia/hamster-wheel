@@ -4,6 +4,7 @@
 A library of bins that contain data.  Bins are created based off of a set index.
 The index is an attribute of the entries stored in the library.  Entries will be
 sorted in the bin by length.
+Author: Samuel Patrick 9/7/16
 *******************************************************************************/
 #include bin.h
 #include <iostream>
@@ -86,6 +87,25 @@ bool bin_library::search(char& word)
 	}
 	
 	return match;
+};
+
+void bin_library::add_entry(char& word)
+{
+	bin* temp = top;
+	char index = word[0];
+
+	//finding a matching bin for the word
+	while (temp != NULL)
+	{
+		if (temp.index == index)
+		{
+			temp.add_entry(word);
+			temp = NULL;
+		}
+		else
+			temp = temp->next;
+	}
+
 };
 
 //Print all the records in the library

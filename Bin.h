@@ -7,6 +7,7 @@ Creates bins for information to be
 sorted into. Bins are linked lists,
 and the entries in a bin are linked
 lists.
+Author: Samuel Patrick 9/7/16
 **************************************/
 
 #ifndef INCLUDE_BIN_H

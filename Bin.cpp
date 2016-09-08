@@ -7,6 +7,7 @@ Uses the Record class for entries.
 Functions for adding, removing, and viewing
 entries are included. Constructors and 
 Destructors are also included.
+Author: Samuel Patrick 9/7/16
 *********************************************/
 #include record.h
 #include bin.h

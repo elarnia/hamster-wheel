@@ -5,6 +5,7 @@ Define Class Record and proivde access to
 member functions in Record.cpp.  Allows data
 to be stored as an object with attributes.
 Entries are stored via a linked list.
+Author: Samuel Patrick 9/7/16
 *******************************************/
 
 #ifndef RECORD_H_INCLUDED
