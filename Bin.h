@@ -31,7 +31,7 @@ public:
 	void print();  //show all the records in the bin
 	char get_index(); //Returns index
 	int get_size(); //Returns num_enries
-	void get_next(bin *next); //Allows access to bin->next
-	void get_entries(record *head);  //Allows access to bin->head 
+	void get_next(bin& next); //Allows access to bin->next
+	void get_entries(record& head);  //Allows access to bin->head 
 };
 #endif
