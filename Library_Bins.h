@@ -28,5 +28,5 @@ public:
 	void remove_bin(bin *target); //Delete the target
 	int get_bins(); //Return the number of bins in the library
 	void list_bins();  //Print the index of all the bins
-}
+};
 #endif
