@@ -164,3 +164,26 @@ void bin::print()
 		tmp = tmp->next;
 	}
 };
+
+
+char bin::get_index()
+{
+	return index;
+};
+
+int get_size()
+{
+	return num_entries;
+};
+
+//Points the user to next bin in the library
+void get_next(bin *ptr)
+{
+	ptr = next;
+};
+
+//Points the user to the head of the bins records
+void get_entries(record *ptr)
+{
+	ptr = head;
+};
