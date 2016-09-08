@@ -40,7 +40,7 @@ void main()
 	char t22[] = "pineapple";
 
 	//create the library
-	bin_library *me = new bin_library;
+	bin_library me;
 
 	//create the bins for the library
 	for (char y = 'a'; y <= 'z'; y++)
